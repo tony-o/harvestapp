@@ -21,7 +21,7 @@ var tracker = function(config){
         ,"Authorization":"Basic " + (new Buffer((self.config.user || self.config.username)+":"+(self.config.pass || self.config.password))).toString("base64")
       }
     },function(err,res,body){
-      if(res.statusCode == 401){
+      if(res && res.statusCode == 401){
         callback("Authentication error.");
       }
       callback(e,body);
