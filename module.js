@@ -32,7 +32,7 @@ var tracker = function(config){
   self.timers.daily = function(date,callback,forUser){
     var url;
 
-    date = date || new Date();
+    date = date ? new Date(date) : new Date();
     url = "daily/" + date.getDayOfYear() + "/" + date.getFullYear() + fuse(forUser);
     self.req(url,callback);
   };
