@@ -24,7 +24,7 @@ var tracker = function(config){
       if(res && res.statusCode == 401){
         callback("Authentication error.");
       }
-      callback(e,body);
+      callback(err,body);
     });
   };
   self.timers = {};
