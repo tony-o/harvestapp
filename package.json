@@ -1,0 +1,15 @@
+{
+  "name":"harvestapp"
+  ,"version":"v0.1.0-1"
+  ,"homepage":"http://segomos.com"
+  ,"main":"module"
+  ,"repository":{
+    "type":"git"
+    ,"url":"git@github.com:tony-o/harvestapp.git"
+  }
+  ,"dependencies":{
+    "request":""
+  }
+  ,"description":"A quick and simple Harvest timetracking/invoicing API.  Couldn't get the other module to work so I wrote this real quick"
+  ,"keywords":["Harvest","harvestapp","timekeeping","timers","invoicing"]
+}
