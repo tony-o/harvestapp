@@ -14,7 +14,7 @@ var tracker = function(config){
   self.config = config;
   self.req = function(url,callback,data){
     request.post({
-      url:"https://" + (self.config.domain) + /" + (url || "account/who_am_i")
+      url:"https://" + (self.config.domain) + "/" + (url || "account/who_am_i")
       ,headers:{
         "Content-Type":"application/json"
         ,"Accept":"application/json"
@@ -24,7 +24,7 @@ var tracker = function(config){
       if(res.statusCode == 401){
         callback("Authentication error.");
       }
-      callback(null,body);
+      callback(e,body);
     });
   };
   self.timers = {};
