@@ -13,7 +13,7 @@ var tracker = function(config){
   var self = this;
   self.config = config;
   self.req = function(url,callback,data){
-    request.post({
+    request[data == "GET" ? "get" : "post"]({
       url:"https://" + (self.config.domain) + "/" + (url || "account/who_am_i")
       ,headers:{
         "Content-Type":"application/json"
@@ -51,6 +51,26 @@ var tracker = function(config){
   self.timers.update = function(id,data,callback,forUser){
     self.req("daily/update/" + id + fuse(forUser),callback,data);
   }
+  
+  self.people = {cache:{}};
+  self.people.id = function(id,callback){
+    if(self.people.cache[id]){
+      callback(null,self.people.cache[id]);
+    }
+    self.req("people/" + id,function(e,b){
+      self.people.cache[id] = b.user;
+      callback(e,b);
+    },"GET");
+  };
+  self.people.all = function(callback){
+    self.req("people",function(e,b){
+      b = JSON.parse(b);
+      for(var u in b){
+        self.people.cache[b[u].user.id] = b[u].user;
+      }
+      callback(e,b);
+    },"GET");
+  };
 };
 
 module.exports = tracker;
